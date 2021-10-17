@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>临时测试</title>
+<script src="https://sql.js.org/dist/sql-wasm.js"></script>
+</head>
+<body>
+
+<a><img src="https://ns-strategy.cdn.bcebos.com/ns-strategy/upload/fc_big_pic/part-00175-947.jpg"/></a>
+<div id="content">
+</div>
+<script>
+innerHTML = ""
+content = str => `<div><p>${str.artc_title}</p><div>${str.artc_content}</div></div>`
+window.onload = async ()=>{
+  const sqlPromise = initSqlJs({locateFile: file => `https://sql.js.org/dist/${file}`})
+  const dataPromise = fetch("http://127.0.0.1/sql.db").then(res => res.arrayBuffer());
+  const [SQL, buf] = await Promise.all([sqlPromise, dataPromise]);
+  const db = new SQL.Database(new Uint8Array(buf));
+  const stmt = db.prepare("select * from tb_blog_artc");
+  while(stmt.step()) {
+    const row = stmt.getAsObject();
+    console.log(row)
+    innerHTML += content(row);
+  }
+  document.querySelector('#content').innerHTML = innerHTML;
+}
+
+</script>
+</body>
+</html>
