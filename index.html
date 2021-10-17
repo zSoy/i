@@ -14,7 +14,7 @@ innerHTML = ""
 content = str => `<div><p>${str.artc_title}</p><div>${str.artc_content}</div></div>`
 window.onload = async ()=>{
   const sqlPromise = initSqlJs({locateFile: file => `https://sql.js.org/dist/${file}`})
-  const dataPromise = fetch("/sql.db").then(res => res.arrayBuffer());
+  const dataPromise = fetch("/i/sql.db").then(res => res.arrayBuffer());
   const [SQL, buf] = await Promise.all([sqlPromise, dataPromise]);
   const db = new SQL.Database(new Uint8Array(buf));
   const stmt = db.prepare("select * from tb_blog_artc");
