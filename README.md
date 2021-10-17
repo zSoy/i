@@ -1,2 +1,1 @@
-# i
-This is a simple blog
+# I just just want to do something
