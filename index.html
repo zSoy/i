@@ -33,7 +33,7 @@ window.onload = async ()=>{
     artc_innerHTML += artc_content(row);
   }
   const stmt2 = db.prepare("select * from tb_blog_sentence")
-  while(stmt2.next()){
+  while(stmt2.step()){
     const row = stmt2.getAsObject();
     sentence_innerHTML += sentence_content(row);
   }
