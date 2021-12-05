@@ -7,6 +7,9 @@
     #content{
       display:flex;
     }
+    p.sentence:hover{
+      color:red;
+    }
   </style>
 </head>
 <body>
@@ -20,7 +23,7 @@
 let artc_innerHTML = "";
 let sentence_innerHTML = "";
 const artc_content = s => `<div><p>${s.artc_title}</p><div>${s.artc_content}</div></div>`;
-const sentence_content = s => `<div><p>${s.sentence_content}</p><p>${s.sentence_meaning}</p></div>`
+const sentence_content = s => `<div><p class="sentence" title="${s.sentence_meaning}">${s.sentence_content}</p></div>`
 window.onload = async ()=>{
   const sqlPromise = initSqlJs({locateFile: file => `https://sql.js.org/dist/${file}`});
   const dataPromise = fetch("/i/sql.db").then(res => res.arrayBuffer());
