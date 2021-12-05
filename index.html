@@ -3,14 +3,22 @@
 <head>
 <title>临时测试</title>
 <script src="https://sql.js.org/dist/sql-wasm.js"></script>
+  <style type="text/css">
+    #content{
+      display:flex;
+    }
+  </style>
 </head>
 <body>
 
 
 <div id="content">
+  <div id="artc"></div>
+  <div id="saying"></div>
 </div>
 <script>
-let innerHTML = "";
+let artc_innerHTML = "";
+let sentence_innerHTML = "";
 const artc_content = s => `<div><p>${s.artc_title}</p><div>${s.artc_content}</div></div>`;
 const sentence_content = s => `<div><p>${s.sentence_content}</p><p>${s.sentence_meaning}</p></div>`
 window.onload = async ()=>{
@@ -28,7 +36,9 @@ window.onload = async ()=>{
   while(stmt2.next()){
     const row = stmt2.getAsObject();
     innerHTML += sentence_content(row);
-  document.querySelector('#content').innerHTML = innerHTML;
+  }
+  document.querySelector('#artc').innerHTML = artc_innerHTML;
+  document.querySelector('#saying').innerHTML = sentence_innerHTML;
 }
 
 </script>
