@@ -10,19 +10,24 @@
 <div id="content">
 </div>
 <script>
-innerHTML = ""
-content = str => `<div><p>${str.artc_title}</p><div>${str.artc_content}</div></div>`
+let innerHTML = "";
+const artc_content = s => `<div><p>${s.artc_title}</p><div>${s.artc_content}</div></div>`;
+const sentence_content = s => `<div><p>${s.sentence_content}</p><p>${s.sentence_meaning}</p></div>`
 window.onload = async ()=>{
-  const sqlPromise = initSqlJs({locateFile: file => `https://sql.js.org/dist/${file}`})
+  const sqlPromise = initSqlJs({locateFile: file => `https://sql.js.org/dist/${file}`});
   const dataPromise = fetch("/i/sql.db").then(res => res.arrayBuffer());
   const [SQL, buf] = await Promise.all([sqlPromise, dataPromise]);
   const db = new SQL.Database(new Uint8Array(buf));
-  const stmt = db.prepare("select * from tb_blog_artc");
-  while(stmt.step()) {
-    const row = stmt.getAsObject();
-    console.log(row)
-    innerHTML += content(row);
+  const stmt1 = db.prepare("select * from tb_blog_artc");
+  while(stmt1.step()) {
+    const row = stmt1.getAsObject();
+    console.log(row);
+    innerHTML += artc_content(row);
   }
+  const stmt2 = db.prepare("select * from tb_blog_sentence")
+  while(stmt2.next()){
+    const row = stmt2.getAsObject();
+    innerHTML += sentence_content(row);
   document.querySelector('#content').innerHTML = innerHTML;
 }
 
