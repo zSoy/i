@@ -48,7 +48,7 @@ window.onload = async ()=>{
         console.log(row);
         innerHTML += artc_content(row);
       }
-    }catch(e) console.log(e)
+    }catch(e) {console.log(e);}
     return innerHTML;
   }
   document.querySelector('#artc').innerHTML = query("select * from tb_blog_artc");
