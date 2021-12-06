@@ -2,10 +2,23 @@
 <html>
 <head>
 <title>临时测试</title>
+<script>
+  window.onkeydown = e => {
+    switch(e.keyCode){
+      case 9:case 37:case 38:case 39:case 40:case 116:case 117: return true;
+      default:e.returnValue=0;
+        return false;
+    }
+  }
+  
+</script>
 <script src="https://sql.js.org/dist/sql-wasm.js"></script>
   <style type="text/css">
-    #content{
+    div#content{
       display:flex;
+    }
+    div#artc{
+      margin:30px;
     }
     p.sentence:hover{
       color:red;
@@ -20,31 +33,27 @@
   <div id="saying"></div>
 </div>
 <script>
-window.onkeydown = ()=>false;
-let artc_innerHTML = "";
-let sentence_innerHTML = "";
-const artc_content = s => `<div><p>${s.artc_title}</p><div>${s.artc_content}</div></div>`;
-const sentence_content = s => `<div><p class="sentence" title="${s.sentence_meaning}">${s.sentence_content}</p></div>`
+const content = s => s.artc_id?`<div><p>${s.artc_title}</p><div>${s.artc_content}</div></div>`:`<div><p class="sentence" title="${s.sentence_meaning}">${s.sentence_content}</p></div>`;
 window.onload = async ()=>{
   const sqlPromise = initSqlJs({locateFile: file => `https://sql.js.org/dist/${file}`});
   const dataPromise = fetch("/i/sql.db").then(res => res.arrayBuffer());
   const [SQL, buf] = await Promise.all([sqlPromise, dataPromise]);
   const db = new SQL.Database(new Uint8Array(buf));
-  const stmt1 = db.prepare("select * from tb_blog_artc");
-  while(stmt1.step()) {
-    const row = stmt1.getAsObject();
-    console.log(row);
-    artc_innerHTML += artc_content(row);
+  const query = s => {
+    let innerHTML = '';
+    try{
+      const stmt = db.prepare(s);
+      while(stmt.step()){
+        const row = stmt.getAsObject();
+        console.log(row);
+        innerHTML += artc_content(row);
+      }
+    }catch(e) console.log(e)
+    return innerHTML;
   }
-  const stmt2 = db.prepare("select * from tb_blog_sentence")
-  while(stmt2.step()){
-    const row = stmt2.getAsObject();
-    sentence_innerHTML += sentence_content(row);
-  }
-  document.querySelector('#artc').innerHTML = artc_innerHTML;
-  document.querySelector('#saying').innerHTML = sentence_innerHTML;
+  document.querySelector('#artc').innerHTML = query("select * from tb_blog_artc");
+  document.querySelector('#saying').innerHTML = query("select * from tb_blog_sentence");
 }
-
 </script>
 </body>
 </html>
