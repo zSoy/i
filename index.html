@@ -33,8 +33,7 @@
   <div id="saying"></div>
 </div>
 <script>
-  const content = s => console.log(s);
-  // const content = s => s.artc_id?`<div><p>${s.artc_title}</p><div>${s.artc_content}</div></div>`:`<div><p class="sentence" title="${s.sentence_meaning}">${s.sentence_content}</p></div>`;
+const content = s => s['artc_id']?`<div><p>${s.artc_title}</p><div>${s.artc_content}</div></div>`:`<div><p class="sentence" title="${s.sentence_meaning}">${s.sentence_content}</p></div>`;
 window.onload = async ()=>{
   const sqlPromise = initSqlJs({locateFile: file => `https://sql.js.org/dist/${file}`});
   const dataPromise = fetch("/i/sql.db").then(res => res.arrayBuffer());
@@ -47,7 +46,7 @@ window.onload = async ()=>{
       while(stmt.step()){
         const row = stmt.getAsObject();
         console.log(row);
-        innerHTML += artc_content(row);
+        innerHTML += content(row);
       }
     }catch(e) {console.log(e);}
     return innerHTML;
