@@ -72,7 +72,8 @@
           let audio = new Audio(e.src);
           audio.play();
         }
-        let data = youdao();
+        let data = document.querySelector("#data").value;
+        data = youdao(data);
         if(data){
           let exam_type = data?.basic?.exam_type.join();
           let explains = data?.basic?.explains.join('\n');
@@ -91,12 +92,14 @@
           }catch(e){console.log(e)}
           try{
             document.querySelector("#youdao_s").src=data["basic"]["us-speech"];
-          }catch(e){console.log(e)}
+            
           let usecase = data["web"].slice(1).map(x=>x["key"].concat('\t',x["value"])).join('\n');
+            console.log(usecase);
+          }catch(e){console.log(e)}
           document.querySelector("#youdao_k").addEventListener("click", clickPlay);
           document.querySelector("#youdao_s").addEventListener("click", clickPlay);
           document.querySelector("#exam_type").innerText = exam_type;
-          document.querySelector("#meaning").value=explains.concat('\n\n',usecase);
+          document.querySelector("#meaning").value=explains.concat('\n\n');
         }
       });
     </script>
