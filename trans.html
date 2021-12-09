@@ -50,6 +50,7 @@
     </div>
     <script>
       (function(){
+        let _=document.querySelector.bind(document);
         let d = {
           word: '',
           m: new Audio(),
@@ -70,9 +71,9 @@
           tx:{},
           al:{}
         };
-        document.querySelector('#youdao_k').addEventListener('click',()=>{d.m.src=d.yd.uk_src;d.m.play();});
-        document.querySelector('#youdao_s').addEventListener('click',()=>{d.m.src=d.yd.us_src;d.m.play();});
-        document.querySelector("#trans").addEventListener("click", async function(){
+        _('#youdao_k').addEventListener('click',()=>{d.m.src=d.yd.uk_src;d.m.play();});
+        _('#youdao_s').addEventListener('click',()=>{d.m.src=d.yd.us_src;d.m.play();});
+        _("#trans").addEventListener("click", async function(){
           async function youdao(){
             let data;
             try{
@@ -102,16 +103,16 @@
             sign = ()=>md5(`/dictionary/word/query/web61000006${s}${d}7ece94d9f9c202b0d2ec557dg4r9bc`)
             fetch('http://dict.iciba.com/dictionary/word/query/web?client=6&key=1000006&timestamp=${s}&word=${d}&signature=${}')
           }
-          d['word'] = document.querySelector("#data").value;
+          d['word'] = _("#data").value;
           await youdao();
-          if(d.yd.explains.length==0)document.querySelector('#meaning').value='输入错误';
+          if(d.yd.explains.length==0)_('#meaning').value='输入错误';
           else{ 
-            if(d.yd.usecase.length>1)document.querySelector('#meaning').value=d.yd.explains.join('\n').concat('\n\n',d.yd.usecase.slice(1).join('\n'));
-            else document.querySelector('#meaning').value=d.yd.explains.join('\n');
+            if(d.yd.usecase.length>1)_('#meaning').value=d.yd.explains.join('\n').concat('\n\n',d.yd.usecase.slice(1).join('\n'));
+            else _('#meaning').value=d.yd.explains.join('\n');
           }
-          document.querySelector('#youdao_k_phonetic').innerText=d.yd.uk;
-          document.querySelector('#youdao_s_phonetic').innerText=d.yd.us;
-          document.querySelector('#exam_type').innerText=d.yd.exam_type;
+          _('#youdao_k_phonetic').innerText=d.yd.uk;
+          _('#youdao_s_phonetic').innerText=d.yd.us;
+          _('#exam_type').innerText=d.yd.exam_type;
         });
       })()
     </script>
