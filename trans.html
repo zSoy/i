@@ -7,8 +7,8 @@
         display:flex;
       }
       #button{
-        width: 200px;
-        height: 100px;
+        width: 100px;
+        height: 32px;
         border-radius: 6px;
       }
       textarea{
@@ -19,9 +19,12 @@
   </head>
   <body>
     <div id="container">
-      <button id="trans">按钮</button>
-      <textarea id="data"></textarea>
-      <textarea id="meaning"></textarea>
+      
+      <div><button id="trans">按钮</button></div>
+      <div>
+        <textarea id="data" placeholder="请输入要翻译的文字"></textarea>
+        <textarea id="meaning"></textarea>
+      </div>
     </div>
     <script>
       document.querySelector("#container").addEventListener("click", function(){
