@@ -4,7 +4,12 @@
     <title>智译</title>
     <style type="text/css">
       #container{
+        width:1000px;
         display:flex;
+        justify-content:center;
+      }
+      #operations{
+        width: 1000px;
       }
       #button{
         width: 100px;
@@ -19,8 +24,9 @@
   </head>
   <body>
     <div id="container">
-      
-      <div><button id="trans">按钮</button></div>
+      <div id="operations">
+        <button id="trans">按钮</button>
+      </div>
       <div>
         <textarea id="data" placeholder="请输入要翻译的文字"></textarea>
         <textarea id="meaning"></textarea>
@@ -41,9 +47,23 @@
           });
           return await res.json();
         }
+        /*
+        async function jinshan(d){
+          let s = new Date().getTime();
+          sign = ()=>md5(`/dictionary/word/query/web61000006${s}${d}7ece94d9f9c202b0d2ec557dg4r9bc`)
+          fetch('http://dict.iciba.com/dictionary/word/query/web?client=6&key=1000006&timestamp=${s}&word=${d}&signature=${}')
+        }
+        */
         let data = await youdao();
-      })
-      document.querySelector("#container").addEventListener("keydown",)
+        
+      });
+      document.querySelector("#container").addEventListener("keydown",function(e){
+        switch(e.keyCode){
+          case 13:
+            document.querySelector("#trans").click();
+            continue;
+        }
+      });
     </script>
   </body>
 </html>
