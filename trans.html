@@ -59,9 +59,9 @@
               },
              body: formdata(d, f??'en', t??'zh-CHS')
             });
-            let data = await res.json();
+            return await res.json();
           }catch(e){};
-          return data??{};
+          return null;
         };
         async function jinshan(d){
           let s = new Date().getTime();
@@ -73,14 +73,10 @@
           audio.play();
         }
         let data = document.querySelector("#data").value;
-        data = youdao(data);
-        console.log(data);
+        data = await youdao(data);
         if(data){
-          let exam_type = data?.basic?.exam_type.join();
           let explains = data?.basic?.explains.join('\n');
           try{
-            console.log(data["basic"]["uk_phonetic"]);
-            console.log(data["basic"]["uk-phonetic"]);
             let uk_phonetic = '['+ data?.basic["uk-phonetic"] + ']';
             document.querySelector("#youdao_k_phonetic").innerText = uk_phonetic;
           }catch(e){console.log(e);};
@@ -93,14 +89,13 @@
           }catch(e){console.log(e)}
           try{
             document.querySelector("#youdao_s").src=data["basic"]["us-speech"];
-            
-          let usecase = data["web"].slice(1).map(x=>x["key"].concat('\t',x["value"])).join('\n');
-            console.log(usecase);
           }catch(e){console.log(e)}
           document.querySelector("#youdao_k").addEventListener("click", clickPlay);
           document.querySelector("#youdao_s").addEventListener("click", clickPlay);
           document.querySelector("#exam_type").innerText = exam_type;
-          document.querySelector("#meaning").value=explains;
+          let exam_type = data?.basic?.exam_type.join();
+          let usecase = data["web"].slice(1).map(x=>x["key"].concat('\t',x["value"])).join('\n');
+          document.querySelector("#meaning").value=explains.concat('\n\n',);
         }
       });
     </script>
