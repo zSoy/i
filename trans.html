@@ -13,7 +13,7 @@
       }
       textarea{
         width: 35vw;
-        height: 150px;
+        height: 200px;
         background-color:#666;
         resize:none;
         font-size:24px;
@@ -41,6 +41,7 @@
       #input{
         display: flex;
         flex-flow:row wrap;
+        justify-content:space-between;
       }
       .pronounce{
         width:200px;
@@ -54,7 +55,15 @@
       </div>
       <div id="input">
         <textarea id="data" placeholder="请输入要翻译的文字"></textarea>
-        <div id="youdao"><textarea id="meaning" style="height:130px;"></textarea><div id="youdao_bar"><span id="pron"><span id="youdao_k" class="pronounce">英[<span id="youdao_k_phonetic"></span>]</span><span id="youdao_s" class="pronounce">美[<span id="youdao_s_phonetic"></span>]</span></span><span id="exam_type"></span></div>
+        <div id="yd" style="width:35vw">
+          <textarea id="meaning" style="height:130px;"></textarea>
+          <div id="youdao_bar">
+            <span id="pron">
+              <span id="youdao_k" class="pronounce">英[<span id="youdao_k_phonetic"></span>]</span>
+              <span id="youdao_s" class="pronounce">美[<span id="youdao_s_phonetic"></span>]</span>
+            </span>
+            <span id="exam_type"></span>
+          </div>
         </div>
       </div>
     </div>
