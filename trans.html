@@ -55,8 +55,8 @@
           <textarea id="yd_means" style="height:180px;"></textarea>
           <div id="yd_bar">
             <span id="pron">
-              <span id="yd_k" class="pronounce">英[<span id="yd_k_phonetic"></span>]</span>
-              <span id="yd_s" class="pronounce">美[<span id="yd_s_phonetic"></span>]</span>
+              <span id="yd_k" class="pronounce"></span>
+              <span id="yd_s" class="pronounce"></span>
             </span><span id="yd_type"></span>
           </div>
         </div>
@@ -170,10 +170,11 @@
           _('#yd_s').innerText=d.yd.us?`美[${d.yd.us}]`:'';
           _('#yd_type').innerText=d.yd.type;
           
-          
+          /*
           _('#js_k').innerText=d.js.uk?`英[${d.js.uk}]`:'';
           _('#js_s').innerText=d.js.us?`美[${d.js.us}]`:'';
           _('#js_type').innerText=d.js.type;
+          */
         });
       })()
     </script>
