@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>智译</title>
+    <style type="text/css">
+      #container{
+        display:flex;
+      }
+      #button{
+        width: 200px;
+        height: 100px;
+        border-radius: 6px;
+      }
+      textarea{
+        width: 500px;
+        height: 150px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <button id="trans"></button>
+      <textarea id="data">
+      <textarea id="meaning">
+    </div>
+    <script>
+      document.querySelector("#container").addEventListener("click", function(){
+        async function youdao(d, f, t){
+          formdata = (d, f, t) => `q=${d}&from=${f}&to=${t}`
+          let res = await fetch("https://aidemo.youdao.com/trans",{
+            method: 'post',
+            mode: 'cors',
+            headers: {
+              'accept': 'application/json, text/javascript, */*; q=0.01',
+              'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
+            },
+           body: formdata(d, f??'en', t??'zh-CHS')
+          });
+          return await res.json();
+        }
+        let data = await youdao();
+        
+        
+      })
+    </script>
+  </body>
+</html>
