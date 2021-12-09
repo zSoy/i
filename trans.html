@@ -46,7 +46,7 @@
       </div>
     </div>
     <script>
-      document.querySelector("#container").addEventListener("click", function(){
+      document.querySelector("#container").addEventListener("click", async function(){
         async function youdao(d, f, t){
           formdata = (d, f, t) => `q=${d}&from=${f}&to=${t}`;
           try{
