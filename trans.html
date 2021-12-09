@@ -139,7 +139,7 @@
           await youdao();
           if(d.yd.explains.length==0)_('#meaning').value='输入错误';
           else{ 
-            if(d.yd.usecase.length>1)_('#meaning').value=d.yd.explains.join('\n').concat('\n\n',d.yd.usecase.slice(1).map(x=>x.key.concat(':',x.value.join()))join('\n'));
+            if(d.yd.usecase.length>1)_('#meaning').value=d.yd.explains.join('\n').concat('\n\n',d.yd.usecase.slice(1).map(x=>x.key.concat(':',x.value.join())).join('\n'));
             else _('#meaning').value=d.yd.explains.join('\n');
           }
           _('#youdao_k_phonetic').innerText=d.yd.uk;
