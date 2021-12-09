@@ -74,6 +74,7 @@
         }
         let data = document.querySelector("#data").value;
         data = youdao(data);
+        console.log(data);
         if(data){
           let exam_type = data?.basic?.exam_type.join();
           let explains = data?.basic?.explains.join('\n');
