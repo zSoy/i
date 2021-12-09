@@ -163,7 +163,7 @@
           await youdao();
           if(d.yd.means.length==0)_('#yd_means').value='输入错误';
           else{ 
-            if(d.yd.usecase.length>1)_('#yd_means').value=d.yd.means.join('\n').concat('\n\n',d.yd.case.slice(1).map(x=>x.key.concat(':',x.value.join())).join('\n'));
+            if(d.yd.case.length>1)_('#yd_means').value=d.yd.means.join('\n').concat('\n\n',d.yd.case.slice(1).map(x=>x.key.concat(':',x.value.join())).join('\n'));
             else _('#yd_means').value=d.yd.means.join('\n');
           }
           _('#yd_k').innerText=d.yd.uk?`英[${d.yd.uk}]`:'';
