@@ -83,12 +83,12 @@
         let uescase = data?.web.slice(1).map(x=>x?.key.concat('\t',x?.value)).join('\n');
         document.querySelector("#youdao_k").addEventListener("click", clickPlay);
         document.querySelector("#youdao_s").addEventListener("click", clickPlay);
-        $("#exam_type").innerText = exam_type;
-        $("#youdao_k_phonetic").innerText = uk_phonetic;
-        $("#youdao_s_phonetic").innerText = us_phonetic;
+        document.querySelector("#exam_type").innerText = exam_type;
+        document.querySelector("#youdao_k_phonetic").innerText = uk_phonetic;
+        document.querySelector("#youdao_s_phonetic").innerText = us_phonetic;
         document.querySelector("#data").value=explains.concat('\n\n',usecase);
       });
-      $("#container").addEventListener("keydown",function(e){
+      document.querySelector("#container").addEventListener("keydown",function(e){
         debugger;
         switch(e.keyCode){
           case 13:
