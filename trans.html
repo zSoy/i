@@ -20,8 +20,8 @@
   <body>
     <div id="container">
       <button id="trans">按钮</button>
-      <textarea id="data"/>
-      <textarea id="meaning"/>
+      <textarea id="data"></textarea>
+      <textarea id="meaning"></textarea>
     </div>
     <script>
       document.querySelector("#container").addEventListener("click", function(){
@@ -39,9 +39,8 @@
           return await res.json();
         }
         let data = await youdao();
-        
-        
       })
+      document.querySelector("#container").addEventListener("keydown",)
     </script>
   </body>
 </html>
