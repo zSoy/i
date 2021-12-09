@@ -82,7 +82,7 @@
                   'accept': 'application/json, text/javascript, */*; q=0.01',
                   'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
                 },
-               body: (()= `q=${d.word}&from=${d.yd.from}&to=${d.yd.to}`)()
+               body: (()=>`q=${d.word}&from=${d.yd.from}&to=${d.yd.to}`)()
               });
               data = await res.json();
             }catch(e){};
