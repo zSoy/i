@@ -38,8 +38,8 @@
         <div id="youdao">
           <textarea id="meaning"></textarea>
           <div id="youdao_bar">
-            <span id="youdao_k">英<p id="youdao_k_phonetic"></p></span>
-            <span id="youdao_s">美<p id="youdao_s_phonetic"></p></span>
+            <span id="youdao_k">英<span id="youdao_k_phonetic"></span></span>
+            <span id="youdao_s">美<span id="youdao_s_phonetic"></span></span>
             <span id="exam_type"></span>
           </div>
         </div>
@@ -59,9 +59,9 @@
               },
              body: formdata(d, f??'en', t??'zh-CHS')
             });
-            return await res.json();
+            let data = await res.json();
           }catch(e){};
-          return null;
+          return data??{};
         };
         async function jinshan(d){
           let s = new Date().getTime();
@@ -73,7 +73,7 @@
           audio.play();
         }
         let data = document.querySelector("#data").value;
-        data = await youdao(data);
+        data = youdao(data);
         console.log(data);
         if(data){
           let exam_type = data?.basic?.exam_type.join();
