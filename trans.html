@@ -35,35 +35,60 @@
       </div>
       <div id="input">
         <textarea id="data" placeholder="请输入要翻译的文字"></textarea>
-        <textarea id="meaning"></textarea>
+        <div id="youdao">
+          <textarea id="meaning"></textarea>
+          <div id="youdao_bar">
+            <span id="youdao_k">英<p id="youdao_k_phonetic"></p></span>
+            <span id="youdao_s">美<p id="youdao_s_phonetic"></p></span>
+            <span id="exam_type"></span>
+          </div>
+        </div>
       </div>
     </div>
     <script>
       document.querySelector("#container").addEventListener("click", function(){
         async function youdao(d, f, t){
-          formdata = (d, f, t) => `q=${d}&from=${f}&to=${t}`
-          let res = await fetch("https://aidemo.youdao.com/trans",{
-            method: 'post',
-            mode: 'cors',
-            headers: {
-              'accept': 'application/json, text/javascript, */*; q=0.01',
-              'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
-            },
-           body: formdata(d, f??'en', t??'zh-CHS')
-          });
-          return await res.json();
-        }
-        /*
+          formdata = (d, f, t) => `q=${d}&from=${f}&to=${t}`;
+          try{
+            let res = await fetch("https://aidemo.youdao.com/trans",{
+              method: 'post',
+              mode: 'cors',
+              headers: {
+                'accept': 'application/json, text/javascript, */*; q=0.01',
+                'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
+              },
+             body: formdata(d, f??'en', t??'zh-CHS')
+            });
+            return await res.json();
+          }catch(e){};
+          return null;
+        };
         async function jinshan(d){
           let s = new Date().getTime();
           sign = ()=>md5(`/dictionary/word/query/web61000006${s}${d}7ece94d9f9c202b0d2ec557dg4r9bc`)
           fetch('http://dict.iciba.com/dictionary/word/query/web?client=6&key=1000006&timestamp=${s}&word=${d}&signature=${}')
         }
-        */
+        function clickPlay(e){
+          let audio = new Audio(e.src);
+          audio.play();
+          delete audio;
+        }
         let data = await youdao();
-        
+        let exam_type = data?.basic?.exam_type.join();
+        let explains = data?.basic?.explains.join('\n');
+        let uk_phonetic = '['.concat(data?.basic["uk-phonetic"], ']');
+        let us_phonetic = '['.concat(data?.basic["us-phonetic"], ']');
+        document.querySelector("#youdao_k").src=data?.basic["uk-speech"];
+        document.querySelector("#youdao_s").src=data?.basic["us-speech"];
+        let uescase = data?.web.slice(1).map(x=>x?.key.concat('\t',x?.value)).join('\n');
+        document.querySelector("#youdao_k").addEventListener("click", clickPlay);
+        document.querySelector("#youdao_s").addEventListener("click", clickPlay);
+        $("#exam_type").innerText = exam_type;
+        $("#youdao_k_phonetic").innerText = uk_phonetic;
+        $("#youdao_s_phonetic").innerText = us_phonetic;
+        document.querySelector("#data").value=explains.concat('\n\n',usecase);
       });
-      document.querySelector("#container").addEventListener("keydown",function(e){
+      $("#container").addEventListener("keydown",function(e){
         switch(e.keyCode){
           case 13:
             document.querySelector("#trans").click();
