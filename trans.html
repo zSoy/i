@@ -52,12 +52,21 @@
       <div id="input">
         <textarea id="data" placeholder="请输入要翻译的文字"></textarea>
         <div id="yd" style="width:35vw">
-          <textarea id="meaning" style="height:180px;"></textarea>
-          <div id="youdao_bar">
+          <textarea id="yd_means" style="height:180px;"></textarea>
+          <div id="yd_bar">
             <span id="pron">
-              <span id="youdao_k" class="pronounce">英[<span id="youdao_k_phonetic"></span>]</span>
-              <span id="youdao_s" class="pronounce">美[<span id="youdao_s_phonetic"></span>]</span>
-            </span><span id="exam_type"></span>
+              <span id="yd_k" class="pronounce">英[<span id="yd_k_phonetic"></span>]</span>
+              <span id="yd_s" class="pronounce">美[<span id="yd_s_phonetic"></span>]</span>
+            </span><span id="yd_type"></span>
+          </div>
+        </div>
+        <div id="js" style="width:35vw">
+          <textarea id="js_means" style="height:180px;"></textarea>
+          <div id="js_bar">
+            <span id="pron">
+              <span id="js_k" class="pronounce"></span>
+              <span id="js_s" class="pronounce"></span>
+            </span><span id="js_type"></span>
           </div>
         </div>
       </div>
@@ -93,22 +102,33 @@
           yd: {
             from: 'en',
             to: 'zh-CHS',
-            explains: '',
+            means: '',
             uk: '',
             us: '',
             uk_src: '',
             us_src: '',
-            usecase:'',
-            exam_type:'',
+            case:'',
+            type:'',
           },
-          js:{},
+          js:{
+            from:'',
+            to:'',
+            means:'',
+            uk:'',
+            us:'',
+            uk_src:'',
+            uk_src_bk:'',
+            us_src:'',
+            us_src_bk:'',
+            type:'',
+          },
           bd:{},
           jy:{},
           tx:{},
           al:{}
         };
-        _('#youdao_k').on('click',()=>d.yd.uk_src?(d.m.src=d.yd.uk_src)+d.m.play():0);
-        _('#youdao_k').on('click',()=>d.yd.us_src?(d.m.src=d.yd.us_src)+d.m.play():0);
+        _('#yd_k').on('click',()=>d.yd.uk_src?(d.m.src=d.yd.uk_src)+d.m.play():0);
+        _('#yd_k').on('click',()=>d.yd.us_src?(d.m.src=d.yd.us_src)+d.m.play():0);
         _("#trans").on("click", async function(){
           async function youdao(){
             let data;
@@ -125,13 +145,13 @@
               data = await res.json();
             }catch(e){};
             if(data){
-              d.yd.explains=data?.basic?.explains??[];
+              d.yd.means=data?.basic?.explains??[];
               d.yd.uk=data?.basic["uk-phonetic"]??'';
               d.yd.us=data?.basic["us-phonetic"]??'';
               d.yd.uk_src=data?.basic["uk-speech"]??'';
               d.yd.us_src=data?.basic["us-speech"]??'';
-              d.yd.exam_type=data?.basic?.exam_type.join();
-              d.yd.usecase=data?.web??[];
+              d.yd.type=data?.basic?.exam_type.join();
+              d.yd.case=data?.web??[];
             }
           };
           async function jinshan(d){
@@ -141,14 +161,19 @@
           }
           d['word'] = _("#data").value;
           await youdao();
-          if(d.yd.explains.length==0)_('#meaning').value='输入错误';
+          if(d.yd.means.length==0)_('#yd_means').value='输入错误';
           else{ 
-            if(d.yd.usecase.length>1)_('#meaning').value=d.yd.explains.join('\n').concat('\n\n',d.yd.usecase.slice(1).map(x=>x.key.concat(':',x.value.join())).join('\n'));
-            else _('#meaning').value=d.yd.explains.join('\n');
+            if(d.yd.usecase.length>1)_('#yd_means').value=d.yd.means.join('\n').concat('\n\n',d.yd.case.slice(1).map(x=>x.key.concat(':',x.value.join())).join('\n'));
+            else _('#yd_means').value=d.yd.means.join('\n');
           }
-          _('#youdao_k_phonetic').innerText=d.yd.uk;
-          _('#youdao_s_phonetic').innerText=d.yd.us;
-          _('#exam_type').innerText=d.yd.exam_type;
+          _('#yd_k').innerText=d.yd.uk?`英[${d.yd.uk}]`:'';
+          _('#yd_s').innerText=d.yd.us?`美[${d.yd.us}]`:'';
+          _('#yd_type').innerText=d.yd.type;
+          
+          
+          _('#js_k').innerText=d.js.uk?`英[${d.js.uk}]`:'';
+          _('#js_s').innerText=d.js.us?`美[${d.js.us}]`:'';
+          _('#js_type').innerText=d.js.type;
         });
       })()
     </script>
