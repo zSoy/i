@@ -52,7 +52,7 @@
       <div id="input">
         <textarea id="data" placeholder="请输入要翻译的文字"></textarea>
         <div id="yd" style="width:35vw">
-          <textarea id="meaning" style="height:130px;"></textarea>
+          <textarea id="meaning" style="height:180px;"></textarea>
           <div id="youdao_bar">
             <span id="pron">
               <span id="youdao_k" class="pronounce">英[<span id="youdao_k_phonetic"></span>]</span>
@@ -107,8 +107,8 @@
           tx:{},
           al:{}
         };
-        _('#youdao_k').on('click',()=>{d.m.src=d.yd.uk_src;!!d.m.src?d.m.play():0;});
-        _('#youdao_s').on('click',()=>{d.m.src=d.yd.us_src;!!d.m.src?d.m.play():0;});
+        _('#youdao_k').on('click',()=>d.yd.uk_src?(d.m.src=d.yd.uk_src)+d.m.play():0;);
+        _('#youdao_k').on('click',()=>d.yd.us_src?(d.m.src=d.yd.us_src)+d.m.play():0;);
         _("#trans").on("click", async function(){
           async function youdao(){
             let data;
