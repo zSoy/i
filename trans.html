@@ -46,7 +46,7 @@
       </div>
     </div>
     <script>
-      document.querySelector("#container").addEventListener("click", function(){
+      document.querySelector("#trans").addEventListener("click", function(){
         async function youdao(d, f, t){
           formdata = (d, f, t) => `q=${d}&from=${f}&to=${t}`;
           try{
@@ -92,7 +92,7 @@
           try{
             document.querySelector("#youdao_s").src=data["basic"]["us-speech"];
           }catch(e){console.log(e)}
-          let usecase = data?.web.slice(1).map(x=>x?.key.concat('\t',x?.value)).join('\n');
+          let usecase = data["web"].slice(1).map(x=>x["key"].concat('\t',x["value"])).join('\n');
           document.querySelector("#youdao_k").addEventListener("click", clickPlay);
           document.querySelector("#youdao_s").addEventListener("click", clickPlay);
           document.querySelector("#exam_type").innerText = exam_type;
