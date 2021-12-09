@@ -75,7 +75,6 @@
         let data = document.querySelector("#data").value;
         data = await youdao(data);
         if(data){
-          let explains = data?.basic?.explains.join('\n');
           try{
             let uk_phonetic = '['+ data?.basic["uk-phonetic"] + ']';
             document.querySelector("#youdao_k_phonetic").innerText = uk_phonetic;
@@ -92,10 +91,10 @@
           }catch(e){console.log(e)}
           document.querySelector("#youdao_k").addEventListener("click", clickPlay);
           document.querySelector("#youdao_s").addEventListener("click", clickPlay);
-          document.querySelector("#exam_type").innerText = exam_type;
-          let exam_type = data?.basic?.exam_type.join();
+          document.querySelector("#exam_type").innerText = data?.basic?.exam_type.join();
+          let explains = data?.basic?.explains.join('\n');
           let usecase = data["web"].slice(1).map(x=>x["key"].concat('\t',x["value"])).join('\n');
-          document.querySelector("#meaning").value=explains.concat('\n\n',);
+          document.querySelector("#meaning").value=explains.concat('\n\n',usecase);
         }
       });
     </script>
