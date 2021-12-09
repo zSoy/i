@@ -46,7 +46,7 @@
       </div>
     </div>
     <script>
-      document.querySelector("#trans").addEventListener("click", function(){
+      document.querySelector("#trans").addEventListener("click", async function(){
         async function youdao(d, f, t){
           formdata = (d, f, t) => `q=${d}&from=${f}&to=${t}`;
           try{
@@ -73,7 +73,7 @@
           audio.play();
         }
         let data = document.querySelector("#data").value;
-        data = youdao(data);
+        data = await youdao(data);
         console.log(data);
         if(data){
           let exam_type = data?.basic?.exam_type.join();
