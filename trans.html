@@ -70,6 +70,7 @@
         }
         function clickPlay(e){
           let audio = new Audio(e.src);
+          console.log(e);
           audio.play();
         }
         let data = document.querySelector("#data").value;
