@@ -140,16 +140,17 @@
             fetch('http://dict.iciba.com/dictionary/word/query/web?client=6&key=1000006&timestamp=${s}&word=${d}&signature=${}')
           }
           d['word'] = _("#data").value;
-          await youdao();
-          if(d.yd.means.length==0)_('#yd_means').value='输入错误';
-          else{ 
-            if(d.yd.case.length>1)_('#yd_means').value=d.yd.means.join('\n').concat('\n\n',d.yd.case.slice(1).map(x=>x.key.concat(':',x.value.join())).join('\n'));
-            else _('#yd_means').value=d.yd.means.join('\n');
+          if(d['word']){
+            await youdao();
+            if(d.yd.means.length==0)_('#yd_means').value='输入错误';
+            else{ 
+              if(d.yd.case.length>1)_('#yd_means').value=d.yd.means.join('\n').concat('\n\n',d.yd.case.slice(1).map(x=>x.key.concat(':',x.value.join())).join('\n'));
+              else _('#yd_means').value=d.yd.means.join('\n');
+            }
+            _('#yd_k').innerText=d.yd.uk?`英[${d.yd.uk}]`:'';
+            _('#yd_s').innerText=d.yd.us?`美[${d.yd.us}]`:'';
+            _('#yd_type').innerText=d.yd.type;
           }
-          _('#yd_k').innerText=d.yd.uk?`英[${d.yd.uk}]`:'';
-          _('#yd_s').innerText=d.yd.us?`美[${d.yd.us}]`:'';
-          _('#yd_type').innerText=d.yd.type;
-          
           /*
           _('#js_k').innerText=d.js.uk?`英[${d.js.uk}]`:'';
           _('#js_s').innerText=d.js.us?`美[${d.js.us}]`:'';
