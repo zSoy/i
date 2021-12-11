@@ -84,7 +84,7 @@
             try{
               const SQL = await initSqlJs({locateFile: file => `https://sql.js.org/dist/${file}`});
               const buf = await (await fetch("/i/sql.db")).arrayBuffer();
-              const db = new SQL.Database(new Uint8Array(buf));
+              db = new SQL.Database(new Uint8Array(buf));
             }catch(e){_('#tip').innerText="请求失败,正在重试";};
           }
           return db;
