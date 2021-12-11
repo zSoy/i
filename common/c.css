@@ -1,8 +1,9 @@
 *{
   margin:0;
   padding:0;
-  border:0;
   font-family:system-ui,fangsong,cursive,serif;
+  border:0;
+  box-sizing:border-box;
 }
 textarea{
   display:block;
