@@ -1,50 +1,68 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>临时测试</title>
-<script src=/i/common/c.min.js></script>
-<script src="https://sql.js.org/dist/sql-wasm.js"></script>
-  <style type="text/css">
-    div#content{
-      display:flex;
-    }
-    div#artc{
-      margin:30px;
-    }
-    p.sentence:hover{
-      color:red;
-    }
-  </style>
-</head>
-<body>
-
-
-<div id="content">
-  <div id="artc"></div>
-  <div id="saying"></div>
-</div>
-<script>
-const content = s => s['artc_id']?`<div><p>${s.artc_title}</p><div>${s.artc_content}</div></div>`:`<div><p class="sentence" title="${s.sentence_meaning}">${s.sentence_content}</p></div>`;
-window.onload = async ()=>{
-  const sqlPromise = initSqlJs({locateFile: file => `https://sql.js.org/dist/${file}`});
-  const dataPromise = fetch("/i/sql.db").then(res => res.arrayBuffer());
-  const [SQL, buf] = await Promise.all([sqlPromise, dataPromise]);
-  const db = new SQL.Database(new Uint8Array(buf));
-  const query = s => {
-    let innerHTML = '';
-    try{
-      const stmt = db.prepare(s);
-      while(stmt.step()){
-        const row = stmt.getAsObject();
-        console.log(row);
-        innerHTML += content(row);
+  <head>
+    <title>临时测试</title>
+    <script src=/i/common/c.min.js></script>
+    <script src="https://sql.js.org/dist/sql-wasm.js"></script>
+    <link rel="stylesheet" type="text/css" href="/i/common/c.css">
+    <style type="text/css">
+      #box{
+        display:flex;
+        flex-flow:row wrap;
       }
-    }catch(e) {console.log(e);}
-    return innerHTML;
-  }
-  document.querySelector('#artc').innerHTML = query("select * from tb_blog_artc");
-  document.querySelector('#saying').innerHTML = query("select * from tb_blog_sentence");
-}
-</script>
-</body>
+      #left{
+        width:20vw;
+      }
+      right{
+        width: 80vw;
+        display:flex;
+      }
+      artc{
+        margin:30px;
+      }
+      p.sentence:hover{
+        color:red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box">
+      <div id="left">
+        <div id="logo">
+        </div>
+        <div id="menu">
+        </div>
+        <div id="more">
+        </div>
+      </div>
+      <div id="right">
+        <div id="artc"></div>
+        <div id="saying"></div>
+      </div>
+    </div>
+    <script>
+      //https://cdn.bootcss.com/github-markdown-css/3.0.1/github-markdown.css
+      const content = s => s['artc_id']?`<div><p>${s.artc_title}</p><div>${s.artc_content}</div></div>`:`<div><p class="sentence" title="${s.sentence_meaning}">${s.sentence_content}</p></div>`;
+      window.onload = async ()=>{
+        const sqlPromise = initSqlJs({locateFile: file => `https://sql.js.org/dist/${file}`});
+        const dataPromise = fetch("/i/sql.db").then(res => res.arrayBuffer());
+        const [SQL, buf] = await Promise.all([sqlPromise, dataPromise]);
+        const db = new SQL.Database(new Uint8Array(buf));
+        const query = s => {
+          let innerHTML = '';
+          try{
+            const stmt = db.prepare(s);
+            while(stmt.step()){
+              const row = stmt.getAsObject();
+              innerHTML += content(row);
+            }
+          }catch(e) {console.log(e);}
+          return innerHTML;
+        }
+        document.querySelector('#artc').innerHTML = query("select * from tb_blog_artc");
+        document.querySelector('#saying').innerHTML = query("select * from tb_blog_sentence");
+      }
+    </script>
+    <script defer src="/i/common/marked.min.js"></script>
+  </body>
 </html>
