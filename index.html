@@ -75,6 +75,9 @@
           </div>
         </div>
         <div id="right">
+          <div>
+            <div id="button"></div>
+          </div>
           <div id="artc"></div>
           <div id="saying"></div>
         </div>
@@ -120,6 +123,7 @@
           document.querySelector('#artc').innerHTML = query("select * from tb_blog_artc");
           document.querySelector('#saying').innerHTML = query("select * from tb_blog_sentence");
         });
+        _("#button").on("click", e=>_("#left").style.width!="60px"?_("#left").style.width="60px":0;)
       }();
     </script>
     <script defer src="/i/common/marked.min.js"></script>
