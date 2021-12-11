@@ -11,17 +11,18 @@
         flex-flow:row wrap;
       }
       #left{
-        width:17.5vw;
+        width:220px;
+        max-width:260px;
         height:100vh;
         display: flex;
         flex-flow:column wrap;
       }
       #logo{
-        width:17.5vw;
+        width:100%;
         height:74px;
         border-bottom:1px solid rgba(129,129,129,.15);
       }
-      #menu #more{
+      #menu,#more{
         display:flex;
         flex-flow:column wrap;
         overflow:auto;
@@ -81,12 +82,13 @@
         const _ = document.querySelector.bind(document);
         const __ = document.querySelectorAll.bind(document);
         async function getDb(){
-          let db = null;
-          while(!db){
+          let SQL = null, buf = null, db = null;
+          while(!SQL||!buf||!db){
             try{
-              const SQL = await initSqlJs({locateFile: file => `https://sql.js.org/dist/${file}`});
-              const buf = await (await fetch("/i/sql.db")).arrayBuffer();
-              db = new SQL.Database(new Uint8Array(buf));
+              SQL ??= await initSqlJs({locateFile: file => `https://sql.js.org/dist/${file}`});
+              buf ??= await (await fetch("/i/sql.db")).arrayBuffer();
+              db ??= new SQL.Database(new Uint8Array(buf));
+              setTimeout(e=>1,3000);
             }catch(e){_('#tip').innerText="请求失败,正在重试";};
           }
           return db;
@@ -94,6 +96,10 @@
         const db = await getDb();
         const content = s => s['artc_id']?`<div><p>${s.artc_title}</p><div>${s.artc_content}</div></div>`:`<div><p class="sentence" title="${s.sentence_meaning}">${s.sentence_content}</p></div>`;
         _('.bitem').on('click', e=>{
+          if(!db){
+            _('#tip').innerText="请求失败,正在重试";
+            return false;
+          }
           const query = s => {
             let innerHTML = '';
             console.log(1);
