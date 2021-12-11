@@ -1,4 +1,4 @@
-(function(){
+;(function(){
   if(window.top!==window.self){window.top.location = window.location;};
   Element.prototype.on=Element.prototype.addEventListener;
   NodeList.prototype.on=function(e,f){
@@ -21,4 +21,4 @@
     });
     return this;
   };
-})()
+})();
