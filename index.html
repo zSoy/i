@@ -72,26 +72,30 @@
     </div>
     <script>
       //https://cdn.bootcss.com/github-markdown-css/3.0.1/github-markdown.css
-      const content = s => s['artc_id']?`<div><p>${s.artc_title}</p><div>${s.artc_content}</div></div>`:`<div><p class="sentence" title="${s.sentence_meaning}">${s.sentence_content}</p></div>`;
-      _('.bitem')[0].on('click', async ()=>{
-        const sqlPromise = initSqlJs({locateFile: file => `https://sql.js.org/dist/${file}`});
-        const dataPromise = fetch("/i/sql.db").then(res => res.arrayBuffer());
-        const [SQL, buf] = await Promise.all([sqlPromise, dataPromise]);
-        const db = new SQL.Database(new Uint8Array(buf));
-        const query = s => {
-          let innerHTML = '';
-          try{
-            const stmt = db.prepare(s);
-            while(stmt.step()){
-              const row = stmt.getAsObject();
-              innerHTML += content(row);
-            }
-          }catch(e) {console.log(e);}
-          return innerHTML;
-        }
-        document.querySelector('#artc').innerHTML = query("select * from tb_blog_artc");
-        document.querySelector('#saying').innerHTML = query("select * from tb_blog_sentence");
-      });
+      !function(){
+        const _ = document.querySelector.bind(document);
+        const __ = document.querySelectorAll.bind(document);
+        const content = s => s['artc_id']?`<div><p>${s.artc_title}</p><div>${s.artc_content}</div></div>`:`<div><p class="sentence" title="${s.sentence_meaning}">${s.sentence_content}</p></div>`;
+        _('.bitem')[0].on('click', async ()=>{
+          const sqlPromise = initSqlJs({locateFile: file => `https://sql.js.org/dist/${file}`});
+          const dataPromise = fetch("/i/sql.db").then(res => res.arrayBuffer());
+          const [SQL, buf] = await Promise.all([sqlPromise, dataPromise]);
+          const db = new SQL.Database(new Uint8Array(buf));
+          const query = s => {
+            let innerHTML = '';
+            try{
+              const stmt = db.prepare(s);
+              while(stmt.step()){
+                const row = stmt.getAsObject();
+                innerHTML += content(row);
+              }
+            }catch(e) {console.log(e);}
+            return innerHTML;
+          }
+          document.querySelector('#artc').innerHTML = query("select * from tb_blog_artc");
+          document.querySelector('#saying').innerHTML = query("select * from tb_blog_sentence");
+        });
+      }();
     </script>
     <script defer src="/i/common/marked.min.js"></script>
   </body>
