@@ -76,7 +76,7 @@
         const _ = document.querySelector.bind(document);
         const __ = document.querySelectorAll.bind(document);
         const content = s => s['artc_id']?`<div><p>${s.artc_title}</p><div>${s.artc_content}</div></div>`:`<div><p class="sentence" title="${s.sentence_meaning}">${s.sentence_content}</p></div>`;
-        _('.bitem')[0].on('click', async ()=>{
+        _('.bitem').on('click', async ()=>{
           const sqlPromise = initSqlJs({locateFile: file => `https://sql.js.org/dist/${file}`});
           const dataPromise = fetch("/i/sql.db").then(res => res.arrayBuffer());
           const [SQL, buf] = await Promise.all([sqlPromise, dataPromise]);
