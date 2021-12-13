@@ -16,7 +16,7 @@
         max-width:260px;
         height:100vh;
         display: flex;
-        flex-flow:column wrap;
+        flex-flow:column;
         background:#333;
       }
       #logo{
@@ -26,8 +26,9 @@
       }
       #menu,#more{
         display:flex;
-        flex-flow:column wrap;
-        overflow:auto;
+        flex-flow:column;
+        overflow-y:auto;
+        overflow-x:hidden;
       }
       #menu{
         flex:auto;
