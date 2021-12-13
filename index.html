@@ -145,7 +145,7 @@
           document.querySelector('#artc').innerHTML = query("select * from tb_blog_artc");
           document.querySelector('#saying').innerHTML = query("select * from tb_blog_sentence");
         });
-        _("#button").on("click", e=>_('#left').style.removeProperty("width")==""?_('#left').style.setProperty("width","60px"):0);
+        _(".button").on("click", e=>_('#left').style.removeProperty("width")==""?_('#left').style.setProperty("width","60px"):0);
       }();
     </script>
     <script defer src="/i/common/marked.min.js"></script>
