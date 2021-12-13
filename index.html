@@ -17,7 +17,7 @@
         height:100vh;
         display: flex;
         flex-flow:column wrap;
-        background:#2d2e2f;
+        background:#333;
       }
       #logo{
         width:100%;
@@ -48,14 +48,22 @@
         color:#fff;
       }
       #right{
-        width: 82.5vw;
         height:100vh;
         display:flex;
         overflow:auto;
         flex-flow:column;
         flex:auto;
       }
-      artc{
+      #header{
+        position:fixed;
+        background:transparent;
+        box-shadow:none;
+      }
+      .top-bg>.header{
+        background:#333;
+        box-shadow:0 0 25px 5px rgb(10 10 10 / 25%);
+      }
+      #artc{
         margin:30px;
       }
       p.sentence:hover{
@@ -85,8 +93,11 @@
           </div>
         </div>
         <div id="right">
-          <div>
-            <div id="button">按钮</div>
+          <div class="top">
+            <div class="header">
+              <div id="button">按钮</div>
+            </div>
+            <>
           </div>
           <div id="artc"></div>
           <div id="saying"></div>
