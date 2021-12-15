@@ -118,6 +118,9 @@
         border-radius:50%;
         background:#fff;
       }
+      .active.sitem:hover::after{
+        background:transparent;
+      }
       .search_fm{
         position:relative;
       }
@@ -127,6 +130,7 @@
         border-radius:50px;
         padding:9px 20px;
         background:rgba(0,0,0,.2);
+        color:#fff;
       }
       .sradio{
         position:relative;
@@ -136,13 +140,15 @@
         line-height:31px;
         cursor:pointer;
       }
-      .sradio::before{
+      .active.sradio::before{
         content:'';
         border-width:8px 8px 0 8px;
         border-style:solid;
         border-color:rgba(0,0,0,.2) transparent transparent;
         position:absolute;
-        
+        top:0;
+        left:50%;
+        margin-left:8px;
       }
       #content{
         overflow-y:auto;
@@ -181,8 +187,7 @@
             </div>
             <div class="middle">
               <div class="type">
-                <div class="anchor"></div>
-                <div class="sitem"><span>站内</span></div>
+                <div class="sitem active"><span>站内</span><div class="anchor"></div></div>
                 <div class="sitem"><span>搜索</span></div>
                 <div class="sitem"><span>工具</span></div>
                 <div class="sitem"><span>社区</span></div>
@@ -196,7 +201,7 @@
               <div class="slist">
                 <div class="sgroup"></div>
                 <div class="sgroup scurrent">
-                  <div class="sradio" values="https://cn.bing.com/search?q=%s%" data-placeholder="微软Bing搜索"><span>Bing</span></div>
+                  <div class="sradio active" values="https://cn.bing.com/search?q=%s%" data-placeholder="微软Bing搜索"><span>Bing</span></div>
                   <div class="sradio" value="https://www.google.com/search?q=%s%" data-placeholder="谷歌两下"><span>Google</span></div>
                   <div class="sradio" values="https://www.sogou.com/web?query=%s%" data-placeholder="搜狗搜索"><span>搜狗</span></div>
                   <div class="sradio" value="https://www.baidu.com/s?wd=%s%" data-placeholder="百度一下"><span>百度</span></div>
