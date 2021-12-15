@@ -148,11 +148,6 @@
         let db = await getDb();
         const content = s => s['artc_id']?`<div><p>${s.artc_title}</p><div>${s.artc_content}</div></div>`:`<div><p class="sentence" title="${s.sentence_meaning}">${s.sentence_content}</p></div>`;
         __('.bitem').on('click', e=>{
-          if(!db){
-            _('#tip').innerText="请求失败,正在重试";
-            db = await getDb();
-            return false;
-          }
           const query = s => {
             let innerHTML = '';
             try{
