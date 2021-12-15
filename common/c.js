@@ -25,4 +25,6 @@
     });
     return this;
   };
+  window._=document.querySelector.bind(document);
+  window.__=document.querySelectorAll.bind(document);
 })();
