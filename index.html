@@ -21,6 +21,7 @@
         display: flex;
         flex-flow:column;
         background:#333;
+        transition:width .3s;
       }
       #logo{
         width:100%;
@@ -119,7 +120,11 @@
             <div class="middle">
               <div class="search">
                 <div class="slist"></div>
-                <div class="input_box"></div>
+                <form class="search_fm" action="" target="_blank">
+                  <input type="text" id="search_text"/>
+                  <button></button>
+                </form>
+                <div class="sitem"></div>
               </div>
             </div>
           </div>
