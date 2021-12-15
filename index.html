@@ -60,7 +60,6 @@
       #right{
         height:100vh;
         display:flex;
-        overflow:auto;
         flex-flow:column;
         flex:auto;
       }
@@ -80,11 +79,31 @@
         height:140px;
         margin:0 auto;
       }
-      #artc{
-        margin:30px;
+      .type{
+        max-width:800px;
+        overflow-x:auto;
+        oveflow-y:unset;
       }
-      p.sentence:hover{
-        color:red;
+      .sitem{
+        display:inline-block;
+        text-align:center;
+        padding:2px 0;
+        word-break:keep-all;
+        cursor:pointer;
+      }
+      .sitem>span{
+        padding:10px 20px;
+      }
+      .sitem>span::after{
+        content:'';
+        width:4px;
+        height:4px;
+        border-radius:50%;
+        background:#fff;
+      }
+      #content{
+        overflow-y:auto;
+        overflow-x:hidden;
       }
     </style>
   </head>
@@ -119,7 +138,16 @@
             </div>
             <div class="middle">
               <div class="search">
-                <div class="slist"></div>
+                <div class="type">
+                  <div class="slist">
+                    <div class="sitem"><span>站内</span></div>
+                    <div class="sitem"><span>搜索</span></div>
+                    <div class="sitem"><span>工具</span></div>
+                    <div class="sitem"><span>社区</span></div>
+                    <div class="sitem"><span>生活</span></div>
+                    <div class="sitem"><span>求职</span></div>
+                  </div>
+                </div>
                 <form class="search_fm" action="" target="_blank">
                   <input type="text" id="search_text"/>
                   <button></button>
