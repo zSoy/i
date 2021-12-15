@@ -1,7 +1,9 @@
 ;(function(){
   if(window.top!==window.self){window.top.location = window.location;};
   window.onkeydown = e => {
-    if(e.keyCode==123||(e.ctrlKey&&e.shiftKey&&(e.keyCode==73||e.keyCode==4)))e.returnValue=!1,return !1;
+    if(e.keyCode==123||(e.ctrlKey&&e.keyCode==85)||(e.ctrlKey&&e.shiftKey&&(e.keyCode==73||e.keyCode==4))){
+      e.returnValue=!1,return !1;
+      }
     return true;
   }
   Element.prototype.on=Element.prototype.addEventListener;
