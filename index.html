@@ -71,6 +71,8 @@
         box-shadow:0 0 25px 5px rgb(10 10 10 / 25%);;
       }
       .middle{
+        display:flex;
+        flex-flow:column;
         margin:0 0 25px 0;
         padding:110px 0 10px 0;
       }
@@ -137,23 +139,21 @@
               <div class="button">按钮</div>
             </div>
             <div class="middle">
-              <div class="search">
-                <div class="type">
-                  <div class="slist">
-                    <div class="sitem"><span>站内</span></div>
-                    <div class="sitem"><span>搜索</span></div>
-                    <div class="sitem"><span>工具</span></div>
-                    <div class="sitem"><span>社区</span></div>
-                    <div class="sitem"><span>生活</span></div>
-                    <div class="sitem"><span>求职</span></div>
-                  </div>
+              <div class="type">
+                <div class="slist">
+                  <div class="sitem"><span>站内</span></div>
+                  <div class="sitem"><span>搜索</span></div>
+                  <div class="sitem"><span>工具</span></div>
+                  <div class="sitem"><span>社区</span></div>
+                  <div class="sitem"><span>生活</span></div>
+                  <div class="sitem"><span>求职</span></div>
                 </div>
-                <form class="search_fm" action="" target="_blank">
-                  <input type="text" id="search_text"/>
-                  <button></button>
-                </form>
-                <div class="sitem"></div>
               </div>
+              <form class="search_fm" action="" target="_blank">
+                <input type="text" id="search_text"/>
+                <button></button>
+              </form>
+              <div class="sitem"></div>
             </div>
           </div>
           <div class="content"></div>
