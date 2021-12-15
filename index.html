@@ -85,6 +85,7 @@
         display:flex;
         flex-flow:row nowrap;
         flex:auto;
+        justify-content:center;
         max-width:800px;
         overflow-x:auto;
         overflow-y:unset;
@@ -97,12 +98,14 @@
         cursor:pointer;
       }
       .sitem>span{
+        display:block;
         padding:10px 20px;
       }
       .sitem>span::after{
         content:'';
         width:4px;
         height:4px;
+        position:absolute;
         border-radius:50%;
         background:#fff;
       }
@@ -154,7 +157,7 @@
                 <input type="text" id="search_text"/>
                 <button></button>
               </form>
-              <div class="sitem"></div>
+              <div class="slist"></div>
             </div>
           </div>
           <div class="content"></div>
