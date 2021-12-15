@@ -73,7 +73,7 @@
       .middle{
         display:flex;
         flex-flow:column;
-        margin:0 0 25px 0;
+        margin:0 auto 25px;
         padding:110px 0 10px 0;
       }
       .search{
@@ -82,9 +82,12 @@
         margin:0 auto;
       }
       .type{
+        display:flex;
+        flex-flow:row nowrap;
+        flex:auto;
         max-width:800px;
         overflow-x:auto;
-        oveflow-y:unset;
+        overflow-y:unset;
       }
       .sitem{
         display:inline-block;
@@ -140,14 +143,12 @@
             </div>
             <div class="middle">
               <div class="type">
-                <div class="slist">
-                  <div class="sitem"><span>站内</span></div>
-                  <div class="sitem"><span>搜索</span></div>
-                  <div class="sitem"><span>工具</span></div>
-                  <div class="sitem"><span>社区</span></div>
-                  <div class="sitem"><span>生活</span></div>
-                  <div class="sitem"><span>求职</span></div>
-                </div>
+                <div class="sitem"><span>站内</span></div>
+                <div class="sitem"><span>搜索</span></div>
+                <div class="sitem"><span>工具</span></div>
+                <div class="sitem"><span>社区</span></div>
+                <div class="sitem"><span>生活</span></div>
+                <div class="sitem"><span>求职</span></div>
               </div>
               <form class="search_fm" action="" target="_blank">
                 <input type="text" id="search_text"/>
