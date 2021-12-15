@@ -1,11 +1,8 @@
 ;(function(){
   if(window.top!==window.self){window.top.location = window.location;};
   window.onkeydown = e => {
-    switch(e.keyCode){
-      case 9:case 37:case 38:case 39:case 40:case 116:case 117: return true;
-      default:e.returnValue=0;
-        return false;
-    }
+    if(e.keyCode==123||(e.ctrlKey&&e.shiftKey(||e.keyCode==73||e.keyCode==4)))e.returnValue=!1,return !1;
+    return true;
   }
   Element.prototype.on=Element.prototype.addEventListener;
   NodeList.prototype.on=function(e,f){
