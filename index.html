@@ -128,10 +128,19 @@
         background:rgba(0,0,0,.2);
       }
       .sradio{
+        position:relative;
         padding:5px 20px;
         font-size:14px;
         white-space:nowrap;
         line-height:31px;
+      }
+      .sradio::before{
+        content:'';
+        border-width:8px 8px 0 8px;
+        border-style:solid;
+        border-color:rgba(0,0,0,.2) transparent transparent;
+        position:absolute;
+        
       }
       #content{
         overflow-y:auto;
@@ -184,14 +193,14 @@
               <div class="slist">
                 <div class="sgroup"></div>
                 <div class="sgroup scurrent">
-                  <div class="sradio" values="https://cn.bing.com/search?q=%s%" data-placeholder="微软Bing搜索">Bing</div>
-                  <div class="sradio" value="https://www.google.com/search?q=%s%" data-placeholder="谷歌两下">Google</div>
-                  <div class="sradio" values="https://www.sogou.com/web?query=%s%" data-placeholder="搜狗搜索">搜狗</div>
-                  <div class="sradio" value="https://www.baidu.com/s?wd=%s%" data-placeholder="百度一下">百度</div>
-                  <div class="sradio" value="https://www.so.com/s?q=%s%" data-placeholder="360好搜">360</div>
-                  <div class="sradio" values="https://yz.m.sm.cn/s?q=%s%" data-placeholder="UC移动端搜索">神马</div>
-                  <div class="sradio" values="https://mijisou.com/?q=%s%" data-placeholder="这是一个 不追踪 你的搜索引擎">秘迹</div>
-                  <div class="sradio" values="https://gobaidugle.com/search2?keyword=%s%&num=10&one=bing&two=sogou" data-placeholder="左右对比一下开启智慧大门">联合</div>
+                  <div class="sradio" values="https://cn.bing.com/search?q=%s%" data-placeholder="微软Bing搜索"><span>Bing<span></div>
+                  <div class="sradio" value="https://www.google.com/search?q=%s%" data-placeholder="谷歌两下"><span>Google</span></d/div>
+                  <div class="sradio" values="https://www.sogou.com/web?query=%s%" data-placeholder="搜狗搜索"><span>搜狗</span></d/div>
+                  <div class="sradio" value="https://www.baidu.com/s?wd=%s%" data-placeholder="百度一下"><span>百度</span></d/div>
+                  <div class="sradio" value="https://www.so.com/s?q=%s%" data-placeholder="360好搜"><span>360</span></d/div>
+                  <div class="sradio" values="https://yz.m.sm.cn/s?q=%s%" data-placeholder="UC移动端搜索"><span>神马</span></d/div>
+                  <div class="sradio" values="https://mijisou.com/?q=%s%" data-placeholder="这是一个 不追踪 你的搜索引擎"><span>秘迹</span></d/div>
+                  <div class="sradio" values="https://gobaidugle.com/search2?keyword=%s%&num=10&one=bing&two=sogou" data-placeholder="左右对比一下开启智慧大门"><span>联合</span></d/div>
                 </div>
                 <div class="sgroup"></div>
                 <div class="sgroup"></div>
