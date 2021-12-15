@@ -96,6 +96,7 @@
         text-align:center;
         padding:2px 0;
         line-height:1.5;
+        position:relative;
         word-break:keep-all;
         cursor:pointer;
       }
@@ -103,11 +104,12 @@
         display:block;
         padding:10px 20px;
       }
-      .sitem>span::after{
+      .sitem::after{
         content:'';
         width:4px;
         height:4px;
         position:absolute;
+        bottom:5px;
         border-radius:50%;
         background:#fff;
       }
