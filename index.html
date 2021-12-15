@@ -8,6 +8,7 @@
     <style type="text/css">
       #cntr{
         background:#222;
+        color:#fff;
       }
       #box{
         display:flex;
@@ -82,7 +83,7 @@
         height:140px;
         margin:0 auto;
       }
-      .type{
+      .type .slist{
         display:flex;
         flex-flow:row nowrap;
         flex:auto;
@@ -113,11 +114,21 @@
         border-radius:50%;
         background:#fff;
       }
+      .search_fm{
+        position:relative;
+      }
       #search_text{
         height:50px;
         width:100%;
         border-radius:50px;
+        padding:9px 20px;
         background:rgba(0,0,0,.2);
+      }
+      .sgroup{
+        display:none;
+      }
+      .scurrent{
+        display:flex;
       }
       #content{
         overflow-y:auto;
@@ -167,7 +178,23 @@
                 <input type="text" id="search_text"/>
                 <button></button>
               </form>
-              <div class="slist"></div>
+              <div class="slist">
+                <div class="sgroup"></div>
+                <div class="sgroup scurrent">
+                  <div class="sradio" values="https://cn.bing.com/search?q=%s%" data-placeholder="微软Bing搜索">Bing</div>
+                  <div class="sradio" value="https://www.google.com/search?q=%s%" data-placeholder="谷歌两下">Google</div>
+                  <div class="sradio" values="https://www.sogou.com/web?query=%s%" data-placeholder="搜狗搜索">搜狗</div>
+                  <div class="sradio" value="https://www.baidu.com/s?wd=%s%" data-placeholder="百度一下">百度</div>
+                  <div class="sradio" value="https://www.so.com/s?q=%s%" data-placeholder="360好搜">360</div>
+                  <div class="sradio" values="https://yz.m.sm.cn/s?q=%s%" data-placeholder="UC移动端搜索">神马</div>
+                  <div class="sradio" values="https://mijisou.com/?q=%s%" data-placeholder="这是一个 不追踪 你的搜索引擎">秘迹</div>
+                  <div class="sradio" values="https://gobaidugle.com/search2?keyword=%s%&num=10&one=bing&two=sogou" data-placeholder="左右对比一下开启智慧大门">联合</div>
+                </div>
+                <div class="sgroup"></div>
+                <div class="sgroup"></div>
+                <div class="sgroup"></div>
+                <div class="sgroup"></div>
+              </div>
             </div>
           </div>
           <div class="content">
