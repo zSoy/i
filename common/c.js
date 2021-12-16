@@ -1,32 +1,54 @@
-;(function(){
-  if(window.top!==window.self){window.top.location = window.location;};
-  window.onkeydown = e => {
+!function(e,f){
+  "use strict";
+  "object"==typeof module&&"object"==typeof module.exports?module.exports=e.document?f(e):function(a){
+    if (!e.document) throw new Error("requires a window with a document");
+    return f(e)
+  }:f(e);
+}("undefined"!=typeof window?window:this,function(e,f){
+  "use strict";
+  if(e.top!==e.self){e.top.location=e.location;};
+  let a=[], d=e.document, o={};
+  d.onkeydown = e => {
     if(e.keyCode==123||(e.ctrlKey&&e.keyCode==85)||(e.ctrlKey&&e.shiftKey&&(e.keyCode==73||e.keyCode==4))){
-      e.returnValue=!1,return !1;
-      }
+      e.returnValue=!1;
+      return !1;
+    }
     return true;
   }
-  Element.prototype.on=Element.prototype.addEventListener;
-  NodeList.prototype.on=function(e,f){
-    []['forEach'].call(this,function(el){
-      el.on(e,f);
+//   element, type, selector, data, function, o
+//   
+  Element.prototype.on=function(e,f,d,u,o){
+    d??={};
+    if(o){
+      let that=this;
+      let F=function(){
+        f();
+        that.removeEventListener(e,F);
+      };
+      this.addEventListener(e,F,u);
+    }
+    this.addEventListener(e,f,u);
+  }
+  NodeList.prototype.on=function(e,f,d,u,o){
+    []['forEach'].call(this,function(c){
+      c.on(e,f,d,o);
     })
   };
-  Element.prototype.trigger = function (type, data) {
-    var event = document.createEvent('HTMLEvents');
-    event.initEvent(type, true, true);
-    event.data = data || {};
-    event.eventName = type;
-    event.target = this;
-    this.dispatchEvent(event);
+  Element.prototype.trigger = function(t,d) {
+    let e=d.createEvent('HTMLEvents');
+    e.initEvent(t,!0,!0);
+    e.data = d || {};
+    e.eventName = t;
+    e.target = this;
+    this.dispatchEvent(e);
     return this;
   };
-  NodeList.prototype.trigger = function (event) {
-    []['forEach'].call(this, function (el) {
-      el['trigger'](event);
+  NodeList.prototype.trigger=function(e){
+    []['forEach'].call(this,function(c){
+      c['trigger'](e);
     });
     return this;
   };
-  window._=document.querySelector.bind(document);
-  window.__=document.querySelectorAll.bind(document);
-})();
+  e._=document.querySelector.bind(document);
+  e.__=document.querySelectorAll.bind(document);
+});
