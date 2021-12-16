@@ -43,7 +43,7 @@
         border-top:1px solid rgba(129,129,129,.15);
         padding:.5rem 0;
       }
-      .bitem+div,.titem{
+      .bitem div,.titem{
         line-height:50px;
         padding-left:50px;
         color:#aaa;
@@ -55,6 +55,11 @@
       .bitem:hover{
         background:rgba(0,0,0,.2);
         color:#fff;
+      }
+      .titems{
+        display:flex;
+        flex-flow:column;
+        flex:auto;
       }
       #right{
         height:100vh;
