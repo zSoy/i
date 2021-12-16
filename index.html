@@ -39,10 +39,6 @@
         overflow-y:auto;
         overflow-x:hidden;
       }
-      #more{
-        border-top:1px solid rgba(129,129,129,.15);
-        padding:.5rem 0;
-      }
       .bitem div,.titem{
         line-height:50px;
         padding-left:50px;
@@ -57,9 +53,16 @@
         color:#fff;
       }
       .titems{
-        display:flex;
+        display:none;
         flex-flow:column;
         flex:auto;
+      }
+      .titems.active{
+        display:flex;
+      }
+      #more{
+        border-top:1px solid rgba(129,129,129,.15);
+        padding:.5rem 0;
       }
       #right{
         height:100vh;
