@@ -96,6 +96,9 @@
         overflow-x:auto;
         overflow-y:unset;
       }
+      .sitem,.sradio{
+        opacity:.5
+      }
       .sitem{
         display:inline-block;
         text-align:center;
@@ -104,6 +107,9 @@
         position:relative;
         word-break:keep-all;
         cursor:pointer;
+      }
+      .active.sitem{
+        opacity:1;
       }
       .sitem>span{
         display:block;
@@ -226,10 +232,37 @@
                   <div class="sradio" values="https://mijisou.com/?q=%s%" data-placeholder="这是一个 不追踪 你的搜索引擎"><span>秘迹</span></div>
                   <div class="sradio" values="https://gobaidugle.com/search2?keyword=%s%&num=10&one=bing&two=sogou" data-placeholder="左右对比一下开启智慧大门"><span>联合</span></div>
                 </div>
-                <div class="sgroup"></div>
-                <div class="sgroup"></div>
-                <div class="sgroup"></div>
-                <div class="sgroup"></div>
+                <div class="sgroup">
+                  <div class="sradio active" values="https://rank.chinaz.com/all/%s%" data-placeholder="权重查询"><span>权重查询</span></div>
+                  <div class="sradio" value="https://link.chinaz.com/%s%" data-placeholder="友链检测"><span>友链检测</span></div>
+                  <div class="sradio" values="https://icp.aizhan.com/%s%" data-placeholder="备案查询"><span>备案查询</span></div>
+                  <div class="sradio" value="https://ping.chinaz.com/%s%" data-placeholder="PING检测"><span>PING检测</span></div>
+                  <div class="sradio" value="https://tool.chinaz.com/Links/?DAddress=%s%" data-placeholder="死链检测"><span>死链检测</span></div>
+                  <div class="sradio" value="https://www.ciku5.com/s?wd=%s%" data-placeholder="关键词挖掘"><span>关键词挖掘</span></div>
+                </div>
+                <div class="sgroup">
+                  <div class="sradio active" values="https://www.zhihu.com/search?type=content&q=%s%" data-placeholder="知乎"><span>知乎</span></div>
+                  <div class="sradio" value="https://weixin.sogou.com/weixin?type=2&query=%s%" data-placeholder="微信"><span>微信</span></div>
+                  <div class="sradio" values="https://s.weibo.com/weibo/%s%" data-placeholder="微博"><span>微博</span></div>
+                  <div class="sradio" value="https://www.douban.com/search?q=%s%" data-placeholder="豆瓣"><span>豆瓣</span></div>
+                  <div class="sradio" value="https://ask.seowhy.com/search/?q=%s%" data-placeholder="SEO问答社区"><span>SEO问答社区</span></div>
+                </div>
+                <div class="sgroup">
+                  <div class="sradio active" values="https://s.taobao.com/search?q=%s%" data-placeholder="淘宝"><span>淘宝</span></div>
+                  <div class="sradio" value="https://search.jd.com/Search?keyword=%s%" data-placeholder="京东"><span>京东</span></div>
+                  <div class="sradio" values="https://www.xiachufang.com/search/?keyword=%s%" data-placeholder="下厨房"><span>下厨房</span></div>
+                  <div class="sradio" value="https://www.xiangha.com/so/?q=caipu&s=%s%" data-placeholder="香哈菜谱"><span>香哈菜谱</span></div>
+                  <div class="sradio" value="https://www.12306.cn/?%s%" data-placeholder="12306"><span>12306</span></div>
+                  <div class="sradio" value="https://www.kuaidi100.com/?%s%" data-placeholder="快递100"><span>快递100</span></div>
+                  <div class="sradio" value="https://www.qunar.com/?%s%" data-placeholder="去哪儿"><span>去哪儿</span></div>
+                </div>
+                <div class="sgroup">
+                  <div class="sradio active" values="https://sou.zhaopin.com/jobs/searchresult.ashx?kw=%s%" data-placeholder="智联招聘"><span>智联招聘</span></div>
+                  <div class="sradio" value="https://search.51job.com/?%s%" data-placeholder="前程无忧"><span>前程无忧</span></div>
+                  <div class="sradio" values="https://www.lagou.com/jobs/list_%s%" data-placeholder="拉勾网"><span>拉勾网</span></div>
+                  <div class="sradio" value="https://www.liepin.com/zhaopin/?key=%s%" data-placeholder="猎聘网"><span>猎聘网</span></div>
+                  <div class="sradio" value="https://www.zhipin.com/job_detail/?query=%s%" data-placeholder="Boss直聘"><span>Boss直聘</span></div>
+                </div>
               </div>
             </div>
           </div>
