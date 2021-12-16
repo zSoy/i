@@ -17,17 +17,14 @@
   }
 //   element, type, selector, data, function, o
 //   
-  Element.prototype.on=function(e,f,d,u,o){
+  Element.prototype.on=function(t,f,d,u,o){
     d??={};
-    if(o){
-      let that=this;
-      let F=function(){
-        f();
-        that.removeEventListener(e,F);
-      };
-      this.addEventListener(e,F,u);
-    }
-    this.addEventListener(e,f,u);
+    let that=this;
+    let F=o?function(){
+      return f.call(this,arguments);
+      that.removeEventListener(t,F);
+    }:function(){f.call(this,arguments);};
+    this.addEventListener(t,F,u);
   }
   NodeList.prototype.on=function(e,f,d,u,o){
     []['forEach'].call(this,function(c){
